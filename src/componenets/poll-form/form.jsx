@@ -19,7 +19,7 @@ const MyForm = ({
   createOption,
   deleteOption,
   handleSubmit,
-}) => {
+}) => 
   <Form onSubmit={handleSubmit}>
     <FormGroup>
       <Label for="title">Title</Label>
@@ -41,7 +41,7 @@ const MyForm = ({
         name="description"
         id="description"
         placeholder="A Dummy Description"
-        value={title}
+        value={description}
         onChange={handleChange}
         invalid={errors.description ? true : false}
       />
@@ -82,6 +82,6 @@ const MyForm = ({
     </FormGroup>
     <Button color="primary" type="submit">{buttonValue}</Button>
   </Form>;
-};
+;
 
 export default MyForm;

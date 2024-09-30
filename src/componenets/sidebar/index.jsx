@@ -34,14 +34,10 @@ class SideBar extends React.Component {
           toggle={this.toggleModal}
           unmountOnClose={true}
         >
-            <ModalHeader toggle={this.toggleModal}>
-                Create A New Poll
-            </ModalHeader>
-            <ModalBody>
-                <PollForm
-                    submit={this.props.addNewPoll}
-                />
-            </ModalBody>
+          <ModalHeader toggle={this.toggleModal}>Create A New Poll</ModalHeader>
+          <ModalBody>
+            <PollForm submit={this.props.addNewPoll} />
+          </ModalBody>
         </Modal>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import shortid from "shortid";
-import MyForm from "./form";
+import Form from "./form";
 
 const defaultOptions = [
   { id: shortid.generate(), value: "", vote: 0 },
@@ -110,7 +110,7 @@ class PollForm extends React.Component {
     const {title,description,options,errors} = this.state
 
     return(
-        <MyForm
+        <Form
             title={title}
             description={description}
             options={options}
