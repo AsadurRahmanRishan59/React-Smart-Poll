@@ -12,8 +12,20 @@ class PollForm extends React.Component {
     title: "",
     description: "",
     options: defaultOptions,
-    errors:{}
+    errors: {},
   };
+
+  componentDidMount() {
+    const { poll } = this.props;
+    if (poll && Object.keys(poll).length > 0) {
+      this.setState({
+        title: poll.title,
+        description: poll.description,
+        options: poll.options,
+      });
+    }
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
@@ -50,22 +62,33 @@ class PollForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const {errors,isValid} = this.validate()
+    const { errors, isValid } = this.validate();
 
     if (isValid) {
-        const {title,description,options} = this.state
-        this.props.submit({
-            title,description,options 
-        })
-        event.target.reset()
+      const { title, description, options } = this.state;
+
+      const poll = {
+        title,
+        description,
+        options,
+      };
+
+      if (this.props.isUpdate) {
+        poll.id = this.props.poll.id;
+        this.props.submit(poll);
+        alert("Updated Successfully");
+      } else {
+        this.props.submit(poll);
+        event.target.reset();
         this.setState({
-            title:'',
-            description:'',
-            options:defaultOptions,
-            errors:{}
-        })
+          title: "",
+          description: "",
+          options: defaultOptions,
+          errors: {},
+        });
+      }
     } else {
-        this.setState({errors})
+      this.setState({ errors });
     }
   };
 
@@ -96,33 +119,32 @@ class PollForm extends React.Component {
       }
     });
 
-    if (optionErrors.length >0) {
-        errors.options = optionErrors
+    if (optionErrors.length > 0) {
+      errors.options = optionErrors;
     }
 
     return {
-        errors,
-        isValid: Object.keys(errors).length === 0
-    }
+      errors,
+      isValid: Object.keys(errors).length === 0,
+    };
   };
-  render(){
+  render() {
+    const { title, description, options, errors } = this.state;
 
-    const {title,description,options,errors} = this.state
-
-    return(
-        <Form
-            title={title}
-            description={description}
-            options={options}
-            buttonValue={this.props.buttonValue || 'Create Poll'}
-            errors={errors}
-            handleChange={this.handleChange}
-            createOption={this.createOption}
-            deleteOption={this.deleteOption}
-            handleOptionChange={this.handleOptionChange}
-            handleSubmit={this.handleSubmit}
-        />
-    )
+    return (
+      <Form
+        title={title}
+        description={description}
+        options={options}
+        buttonValue={this.props.buttonValue || "Create Poll"}
+        errors={errors}
+        handleChange={this.handleChange}
+        createOption={this.createOption}
+        deleteOption={this.deleteOption}
+        handleOptionChange={this.handleOptionChange}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 

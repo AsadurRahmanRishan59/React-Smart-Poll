@@ -7,7 +7,6 @@ import {
   Label,
   Button,
 } from "reactstrap";
-import { isValid } from "shortid";
 
 class ParticipationForm extends React.Component {
   state = {
@@ -80,7 +79,7 @@ class ParticipationForm extends React.Component {
             type="button"
             color="danger"
             onClick={() => this.props.deletePoll(this.props.poll.id)}
-            className="ms-auto"
+            className="ms-2"
           >
             Delete
           </Button>
