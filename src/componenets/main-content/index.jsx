@@ -61,6 +61,7 @@ class MainContent extends React.Component{
                             isUpdate = {true}
                             submit = {updatePoll}
                             buttonValue = 'Update Poll'
+                            modalClose={this.toggleModal}
                         />
                     </ModalBody>
                 </Modal>

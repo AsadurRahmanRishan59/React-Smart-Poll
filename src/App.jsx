@@ -23,14 +23,19 @@ class App extends React.Component {
     poll.totalVote = 0;
     poll.opinions = [];
 
+    const{polls} = this.state
+    polls.push(poll)
+
     this.setState({
       // polls: [...this.state.polls,poll]
-      polls: this.state.polls.concat(poll),
+      // polls: this.state.polls.concat(poll),
+      polls
     });
   };
 
   updatePoll = (updatedPoll) => {
-    const polls = [...this.state.polls];
+    // const polls = [...this.state.polls];
+    const{polls} = this.state
     const poll = polls.find((p) => p.id === updatedPoll.id);
 
     poll.title = updatedPoll.title;
@@ -62,6 +67,7 @@ class App extends React.Component {
       id: shortid.generate(),
       name: response.name,
       selectedOption: response.selectedOption,
+      optName: option.value
     };
 
     poll.opinions.push(opinion);
