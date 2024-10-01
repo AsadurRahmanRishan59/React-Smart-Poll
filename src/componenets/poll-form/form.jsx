@@ -47,6 +47,7 @@ const MyForm = ({
       />
       {errors.description && <FormFeedback>{errors.description}</FormFeedback>}
     </FormGroup>
+    
     <FormGroup>
       <Label>
         Enter Options
@@ -64,6 +65,7 @@ const MyForm = ({
           Add Option
         </span>
       </Label>
+
       {options.map((opt, index) => (
         <div key={opt.id} className="d-flex my-2">
           <Input
@@ -77,6 +79,8 @@ const MyForm = ({
             className="ms-2"
             onClick={()=>deleteOption(index)}
           >Delete</Button>
+
+          {errors.options && <FormFeedback>{errors.options[index]}</FormFeedback>}
         </div>
       ))}
     </FormGroup>
