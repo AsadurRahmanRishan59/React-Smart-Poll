@@ -67,7 +67,8 @@ class App extends React.Component {
       id: shortid.generate(),
       name: response.name,
       selectedOption: response.selectedOption,
-      optName: option.value
+      optName: option.value,
+      options:poll.options
     };
 
     poll.opinions.push(opinion);

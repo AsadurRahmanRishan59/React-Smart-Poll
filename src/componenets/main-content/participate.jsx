@@ -8,13 +8,16 @@ import {
   Button,
   Container,
   Row,
+  Col,
 } from "reactstrap";
+import Status from "./status";
 
 class ParticipationForm extends React.Component {
   state = {
     name: "",
     selectedOption: "",
     errors: {},
+    statusOn:false
   };
 
   handleChange = (event) => {
@@ -62,6 +65,12 @@ class ParticipationForm extends React.Component {
       errors,
       isValid: Object.keys(errors).length === 0,
     };
+  };
+
+  handleStatus = (event) => {
+    this.setState({
+      statusOn:!this.state.statusOn
+    })
   };
 
   render() {
@@ -156,15 +165,22 @@ class ParticipationForm extends React.Component {
           </Form>
         </Row>
         <Row className="mt-3">
-          <div>
-            {/* <Button color="primary">Total Vote</Button> */}
-            <p>Total Votes: {this.props.poll.totalVote}</p>
-            <p>Option Name: {this.props.poll.opinions.map((opinion)=>(
-              `${opinion.optName} ${opinion.name}`
-            ))}</p>
-            
- 
-          </div>
+          <Col md={2}>
+            {this.props.poll.totalVote>0 && (
+              <Button color="primary" onClick={this.handleStatus}>
+                Status
+              </Button>
+            )}
+          </Col>
+          <Col md={10}>
+            <Status
+              statusOn = {this.state.statusOn} 
+              totalVote={this.props.poll.totalVote}
+              opinions={this.props.poll.opinions}
+              options={this.props.poll.options}
+              
+            />
+          </Col>
         </Row>
       </Container>
     );
