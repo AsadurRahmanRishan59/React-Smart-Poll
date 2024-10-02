@@ -77,6 +77,7 @@ class PollForm extends React.Component {
         poll.id = this.props.poll.id;
         this.props.submit(poll);
         alert("Updated Successfully");
+        this.props.modalClose()
       } else {
         this.props.submit(poll);
         event.target.reset();
@@ -86,6 +87,7 @@ class PollForm extends React.Component {
           options: defaultOptions,
           errors: {},
         });
+        this.props.modalClose()
       }
     } else {
       this.setState({ errors });

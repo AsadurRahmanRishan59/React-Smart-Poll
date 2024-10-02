@@ -79,7 +79,6 @@ const MyForm = ({
             className="ms-2"
             onClick={()=>deleteOption(index)}
           >Delete</Button>
-
           {errors.options && <FormFeedback>{errors.options[index]}</FormFeedback>}
         </div>
       ))}
