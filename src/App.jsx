@@ -11,11 +11,18 @@ class App extends React.Component {
     polls: [],
     selectedPoll: {},
     searchTerm: "",
+    statusOn: false,
   };
 
+  handleStatus = () => {
+    this.setState({
+      statusOn: !this.state.statusOn,
+    });
+  };
   componentDidMount() {
     this.setState({ polls: POLLS });
   }
+
 
   addNewPoll = (poll) => {
     poll.id = shortid.generate();
@@ -52,7 +59,7 @@ class App extends React.Component {
 
   selectPoll = (pollId) => {
     const poll = this.state.polls.find((p) => p.id === pollId);
-    this.setState({ selectedPoll: poll });
+    this.setState({ selectedPoll: poll,statusOn:false });
   };
 
   getOpinion = (response) => {
@@ -109,6 +116,8 @@ class App extends React.Component {
               getOpinion={this.getOpinion}
               updatePoll={this.updatePoll}
               deletePoll={this.deletePoll}
+              handleStatus={this.handleStatus}
+              statusOn={this.state.statusOn}
             />
           </Col>
         </Row>

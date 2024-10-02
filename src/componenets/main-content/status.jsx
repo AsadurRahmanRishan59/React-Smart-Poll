@@ -2,14 +2,13 @@ import React from "react";
 import { Table } from "reactstrap";
 
 class Status extends React.Component {
-  state = {
-    statusArray: [],
-  };
+  
   render() {
     const { statusOn, opinions, options, totalVote } = this.props;
-
+  
+    
     return (
-      statusOn && (
+      statusOn && totalVote>0 && (
         <Table bordered className="text-center">
           <thead>
             <tr>

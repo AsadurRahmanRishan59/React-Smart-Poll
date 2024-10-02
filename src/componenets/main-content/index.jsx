@@ -32,7 +32,7 @@ class MainContent extends React.Component{
             )
         }
 
-        const {poll,getOpinion, updatePoll, deletePoll} = this.props
+        const {poll,getOpinion, updatePoll, deletePoll,statusOn,handleStatus} = this.props
 
         return(
             <div>
@@ -44,6 +44,8 @@ class MainContent extends React.Component{
                     getOpinion = {getOpinion}
                     toggleModal = {this.toggleModal}
                     deletePoll = {deletePoll}
+                    handleStatus={handleStatus}
+                    statusOn={statusOn}
                 />
                 <Modal 
                     isOpen={this.state.openModal}

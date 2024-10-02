@@ -17,8 +17,10 @@ class ParticipationForm extends React.Component {
     name: "",
     selectedOption: "",
     errors: {},
-    statusOn:false
+
   };
+
+ 
 
   handleChange = (event) => {
     this.setState({
@@ -67,12 +69,6 @@ class ParticipationForm extends React.Component {
     };
   };
 
-  handleStatus = (event) => {
-    this.setState({
-      statusOn:!this.state.statusOn
-    })
-  };
-
   render() {
     return (
       <Container>
@@ -111,7 +107,7 @@ class ParticipationForm extends React.Component {
                     onChange={this.handleChange}
                     invalid={this.state.errors.selectedOption ? true : false}
                   />
-                  <text className="mx-2">{opt.value}</text>
+                  <small className="mx-2">{opt.value}</small>
                   <span
                     style={{
                       padding: "5px 20px",
@@ -161,24 +157,26 @@ class ParticipationForm extends React.Component {
               )}
             </FormGroup>
             <Button type="submit">Submit Your Opinion</Button>
-            {console.log(this.state.name)}
           </Form>
         </Row>
         <Row className="mt-3">
           <Col md={2}>
-            {this.props.poll.totalVote>0 && (
-              <Button color="primary" onClick={this.handleStatus}>
+            {this.props.poll.totalVote > 0 && (
+              <Button
+                color="primary"
+                onClick={this.props.handleStatus}
+                value={this.props.poll.id}
+              >
                 Status
               </Button>
             )}
           </Col>
           <Col md={10}>
             <Status
-              statusOn = {this.state.statusOn} 
+              statusOn={this.props.statusOn}
               totalVote={this.props.poll.totalVote}
               opinions={this.props.poll.opinions}
               options={this.props.poll.options}
-              
             />
           </Col>
         </Row>
